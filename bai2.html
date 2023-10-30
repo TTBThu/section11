@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section11</title>
+</head>
+<body>
+    <script>
+        //bai 1
+        function isPrime(number) {
+            if (number <= 1) {
+                return false;
+            }
+            for (let i = 2; i <= Math.sqrt(number); i++) {
+                if (number % i === 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        function printPrimes(N) {
+            if (N < 1) {
+                console.log("Vui lòng nhập một số tự nhiên lớn hơn hoặc bằng 1.");
+                return;
+            }
+            let count = 0;
+            let number = 2;
+            while (count < N) {
+                if (isPrime(number)) {
+                    console.log(number);
+                    count++;
+                }
+                number++;
+            }
+        }
+        let userInput = parseInt(prompt("Nhập một số:"));
+        printPrimes(userInput);
+
+        //bai 2
+        function bai2(arr) {
+            let pairs = [];
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = i + 1; j < arr.length; j++) {
+                    if (arr[i] === arr[j]) {
+                        pairs.push([arr[i], arr[j]]);
+                    }
+                }
+            }
+            return pairs;
+        }
+        let inputArray = [3, 5, 5, 5, 5, 7, 8];
+        let result = bai2(inputArray);
+        console.log(result);
+
+        //bai 3
+        function bai3(input) {
+            let longestSubstring = '';
+            let currentSubstring = '';
+            for (let i = 0; i < input.length; i++) {
+                let char = input[i];
+                let charIndex = currentSubstring.indexOf(char);
+
+                if (charIndex !== -1) {
+                    currentSubstring = currentSubstring.slice(charIndex + 1);
+                }
+                currentSubstring += char;
+                if (currentSubstring.length > longestSubstring.length) {
+                    longestSubstring = currentSubstring;
+                }
+            }
+            return [longestSubstring];
+        }
+        let nhapVao = prompt("Nhập chuỗi:");
+        let inRa = bai3(nhapVao);
+        console.log(inRa);
+    </script>
+</body>
+</html>

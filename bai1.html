@@ -3,89 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Section10</title>
+    <title>Section11</title>
 </head>
 <body>
     <script>
         //bài 1
-        function timSoNhoNhat(so1, so2, so3) {
-            return Math.min(so1, so2, so3);
+        function Bai1(str) {
+            str = str.replace(/\s/g, '').toLowerCase();
+            return str === str.split('').reverse().join('');
         }
-        var number1 = parseFloat(prompt("Nhập số thứ nhất:"));
-        var number2 = parseFloat(prompt("Nhập số thứ hai:"));
-        var number3 = parseFloat(prompt("Nhập số thứ ba:"));
-        var maxNum = timSoNhoNhat(number1, number2, number3);
-        console.log("Số bé nhất trong ba số là: " + maxNum);
+        nhapVao = prompt("Mời nhập: ");
+        console.log(Bai1(nhapVao));
 
         //bài 2
-        function isPrime(number) {
-            if (number <= 1) {
-                return false;
+        function bai2(str) {
+            let words = str.split(' ');
+            for (let i = 0; i < words.length; i++) {
+                words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
             }
-            for (let i = 2; i <= Math.sqrt(number); i++) {
-                if (number % i === 0) {
-                    return false;
-                }
-            }
-            return true;
+            return words.join(' ');
         }
-        let userInput = prompt("Nhập một số:");
-        let number = parseInt(userInput);
-        if (isPrime(number)) {
-            console.log(`${number} là số nguyên tố.`);
-        } else {
-            console.log(`${number} không phải là số nguyên tố.`);
-        }
+        input = prompt("Mời nhập: ");
+        console.log(bai2(input));
 
         //bài 3
-        function tinhGiaiThua(n) {
-            if (n === 0) {
-                return 1;
-            } else {
-                return n * tinhGiaiThua(n - 1);
+        function Bai3(arr) {
+            let day = {};
+            let newDay = [];
+            for (let item of arr) {
+                let lowerCaseItem = item.toLowerCase();
+                if (!day[lowerCaseItem]) {
+                    day[lowerCaseItem] = true;
+                    newDay.push(item);
+                }
             }
+            return newDay;
         }
-        let so = parseFloat(prompt("Nhập số:"));
-        let ketQua = tinhGiaiThua(so);
-        console.log(`Giai thừa của ${so} là: ${ketQua}`);
-
-        //bài 4
-        function timCacCapCoTong10(arr) {
-            let result = [];
-            for (let i = 0; i < arr.length; i++) {
-                for (let j = i + 1; j < arr.length; j++) {
-                    if (arr[i] + arr[j] === 10) {
-                        result.push([arr[i], arr[j]]);
-                    }
-                }
-            }
-            return result;
-        }  
-        let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        let couple10 = timCacCapCoTong10(arr);
-        console.log("Các cặp có tổng bằng 10 là:");
-        console.log(couple10);
-
-        //bài 5
-        function kiemTraTanSuatChuoi(inputString) {
-            var tansuat = {};
-            inputString = inputString.replace(/\s/g, '').toLowerCase();
-            for (var i = 0; i < inputString.length; i++) {
-                var char = inputString[i];
-                if (tansuat[char]) {
-                    tansuat[char]++;
-                } else {
-                    tansuat[char] = 1;
-                }
-            }
-            for (var key in tansuat) {
-                if (tansuat.hasOwnProperty(key)) {
-                    console.log("Ký tự '" + key + "' xuất hiện " + tansuat[key] + " lần.");
-                }
-            }
-        }
-        var chuoiNhap = prompt("Nhập vào chuỗi ký tự:");
-        kiemTraTanSuatChuoi(chuoiNhap);
+        let inputArray = prompt("Nhập mảng, cách nhau bằng dấu phẩy (,):").split(",");
+        console.log(Bai3(inputArray));
     </script>
 </body>
 </html>
